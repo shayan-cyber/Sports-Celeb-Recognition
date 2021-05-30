@@ -1,0 +1,168 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Icon Detect</title>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <link rel="stylesheet" href="{% static 'dragdrop.css' %}" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <br /><br />
+    <center>
+      <strong><h5>Choose Image Of Any Of These Icons</h5></strong>
+    </center>
+    <center>
+      <small>I Can Predict With More Than 90% Accuracy :~) </small>
+      <br>
+      <small>You Can Check For Your Own Image Also, How It Matches With These Icons <img src="https://img.icons8.com/emoji/48/000000/grinning-squinting-face--v2.png"/></small>
+    </center>
+
+    <div class="container p-1 mt-5 mb-5">
+      <div class="row">
+        <div class="col">
+          <img
+            style="width: 6rem; height: 6rem;  object-fit: cover;"
+            class="rounded-circle"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL0Doz7r5sCkOoHIEPJnD78nXjX5AAJyVNWA&usqp=CAU"
+            alt=""
+          />
+        </div>
+        <div class="col">
+          <img
+            style="width: 6rem; height: 6rem;  object-fit: cover;"
+            class="rounded-circle"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2MAZVjNsqBQxxeYomP__bVP9IFH7AoD8djQ&usqp=CAU"
+            alt=""
+          />
+        </div>
+        <div class="col">
+          <img
+            style="width: 6rem; height: 6rem;  object-fit: cover;"
+            class="rounded-circle"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqxvyhQzh2615-rnlllggBa5w1l71XtkivUw&usqp=CAU"
+            alt=""
+          />
+        </div>
+        <div class="col">
+          <img
+            style="width: 6rem; height: 6rem;  object-fit: cover;"
+            class="rounded-circle"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnN4lkfn4sJCQEhWMx9FyG30yUYeZ3oxHgZA&usqp=CAU"
+            alt=""
+          />
+        </div>
+        <div class="col">
+          <img
+            style="width: 6rem; height: 6rem;  object-fit: cover;"
+            class="rounded-circle"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw3xRVrG_q17cTeGYy4_-7GwebTM8CYPDBow&usqp=CAU"
+            alt=""
+          />
+        </div>
+        <div class="col">
+          <img
+            style="width: 6rem; height: 6rem;  object-fit: cover;"
+            class="rounded-circle"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEh26UOTyWbOf0jh8_OzhJ5f8ELEXtrZYYSg&usqp=CAU"
+            alt=""
+          />
+        </div>
+        <div class="col">
+          <img
+            style="width: 6rem; height: 6rem;  object-fit: cover;"
+            class="rounded-circle"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHwuvG6GUfv9TriOHzpFgKXvUaB_MT00WmmQ&usqp=CAU"
+            alt=""
+          />
+        </div>
+        <div class="col">
+          <img
+            style="width: 6rem; height: 6rem;  object-fit: cover;"
+            class="rounded-circle"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgHOnppTx7cDOEUaEHs_REBJZqaLVG7UVS3A&usqp=CAU"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- drag start-->
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <form method="POST" action="{% url 'classify_img' %}" id="#">
+            {% csrf_token %}
+
+            <div class="form-group files color">
+              <label>Upload Your File </label>
+              <input
+                type="file"
+                id="formFileLg"
+                class="form-control"
+                multiple=""
+                required
+              />
+            </div>
+            <input
+              name="img_string"
+              id="img_string"
+              style="display: none"
+              type="text"
+            />
+            <center>
+              <button class="btn btn-outline-primary" type="submit">
+                Predict
+              </button>
+            </center>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- drag end -->
+  </body>
+
+  <script>
+    // get a reference to the file input
+    const fileInput = document.getElementById("formFileLg");
+
+    // listen for the change event so we can capture the file
+    fileInput.addEventListener("change", (e) => {
+      // get a reference to the file
+      const file = e.target.files[0];
+
+      // encode the file using the FileReader API
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        // log to console
+        // logs data:<type>;base64,wL2dvYWwgbW9yZ...
+        console.log(reader.result);
+        document.getElementById("img_string").value = reader.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  </script>
+</html>
